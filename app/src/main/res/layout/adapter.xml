@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  android:padding="5dp"
+    android:id="@+id/layout"
+    android:background="#8709d8"
+    android:outlineAmbientShadowColor="#FFF000"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+
+        android:id="@+id/rem"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="8dp"
+        android:text="Reminders"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="116dp"
+        android:textColor="@color/white"
+        android:text="time"
+        app:layout_constraintEnd_toStartOf="@+id/tick"
+        app:layout_constraintTop_toBottomOf="@+id/rem" />
+
+    <ImageButton
+        android:id="@+id/tick"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_weight=".30"
+        android:src="@drawable/tick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

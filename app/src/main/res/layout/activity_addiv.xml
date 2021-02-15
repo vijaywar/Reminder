@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addiv">
+
+    <Button
+        android:id="@+id/add"
+        android:onClick="addiv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="132dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="time"
+        android:hint="Set Time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <EditText
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="set Date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
+
+    <Button
+        android:id="@+id/btime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        android:onClick="time"
+        app:layout_constraintStart_toEndOf="@+id/time"
+        app:layout_constraintTop_toTopOf="@+id/time" />
+
+    <Button
+        android:id="@+id/bdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:onClick="date"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toTopOf="@+id/Date" />
+</androidx.constraintlayout.widget.ConstraintLayout>
