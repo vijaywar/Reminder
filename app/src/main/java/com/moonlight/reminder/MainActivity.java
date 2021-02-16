@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     CustomListAdapter adapterinstance;
     ImageButton img;
     ListView layout;
+    ArrayList<reminder> list;
+    add vi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +42,19 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
         layout=findViewById(R.id.listview);
         //img=findViewById(R.id.imageButton);
-        add vi=new add(MainActivity.this);
+        vi=new add(MainActivity.this);
         System.out.println(vi.getAllContacts().size()+"................................................................................");
+
         if(vi.getAllContacts().size()!=0 ) {
-     adapterinstance = new CustomListAdapter(this, vi.getAllContacts());
+            list=vi.getAllContacts();
+     adapterinstance = new CustomListAdapter(this, list);
             layout.setAdapter(adapterinstance);
         }
     }
 
     public void add(View view) {
         Intent i=new Intent(MainActivity.this,addiv.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
         System.out.println("CLicked ao");
     }
@@ -61,9 +66,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onResume() {
-        if(adapterinstance!=null)
-        adapterinstance.notifyDataSetChanged();
+
+        if(adapterinstance!=null) {
+            list=vi.getAllContacts();
+            adapterinstance.notifyDataSetChanged();
+
+        }
         System.out.println("Called...........resume");
         super.onResume();
     }
@@ -187,6 +202,12 @@ class CustomListAdapter extends BaseAdapter {
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(activity, data.gid(), intent, 0);
                 AlarmManager alarmManager = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
                 alarmManager.cancel(pendingIntent);
+
+                Intent intentk = new Intent(activity, notirec.class);
+                PendingIntent pendingIntentk = PendingIntent.getBroadcast(activity, data.gid()+50000, intentk, 0);
+                AlarmManager alarmManagerk = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
+                alarmManagerk.cancel(pendingIntentk);
+
                 if(AlarmManagerBroadcast.mp!=null){
                 AlarmManagerBroadcast.mp.stop();}
                 add kl=new add(activity);
@@ -202,6 +223,7 @@ class CustomListAdapter extends BaseAdapter {
                 notifyDataSetChanged();
             }
         });
+
         //  System.out.println(data.getPhoneNumber());
         // viewHolder.rating.setRating( Float.parseFloat(data.getPhoneNumber()));
         // viewHolder.tv_discription.setText(customListDataModelArrayList.get(pos).getImageDiscription());

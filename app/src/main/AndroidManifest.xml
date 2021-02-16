@@ -19,8 +19,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
-
+        <activity android:name=".notis"/>
         <receiver android:name=".AlarmManagerBroadcast" />
+        <receiver android:name=".notirec" />
     </application>
 
 </manifest>

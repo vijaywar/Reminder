@@ -18,4 +18,8 @@ public class AlarmManagerBroadcast extends BroadcastReceiver {
         mp.start();
         Toast.makeText(context, "Message Ringing Alarm", Toast.LENGTH_LONG).show();
     }
+
+
+
+
 }

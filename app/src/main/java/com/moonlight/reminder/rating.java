@@ -18,6 +18,7 @@ public class rating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
         Toolbar tool=findViewById(R.id.toolbar);
+        getSupportActionBar().setTitle(null);
         setSupportActionBar(tool);
         name=findViewById(R.id.name);
         rating=findViewById(R.id.ratingBar);

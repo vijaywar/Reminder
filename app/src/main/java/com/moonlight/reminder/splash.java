@@ -34,7 +34,7 @@ public class splash extends AppCompatActivity {
                     // performing operation
                     i[0] = doOperation(i[0]);
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -50,6 +50,9 @@ public class splash extends AppCompatActivity {
                 if (i[0] >= 100) {
                     // sleeping for 1 second after operation completed
                     Intent Ma=new Intent(splash.this,MainActivity.class);
+                  
+                    Ma.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                     startActivity(Ma);
                     // close the progress bar dialog
 

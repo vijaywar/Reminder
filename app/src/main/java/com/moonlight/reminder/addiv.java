@@ -1,19 +1,27 @@
 package com.moonlight.reminder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.RemoteInput;
 
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,16 +34,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class addiv extends AppCompatActivity {
-    PendingIntent pendingIntent;
-    AlarmManager alarmManager;
+    PendingIntent pendingIntent,pendingIntentk;
+    AlarmManager alarmManager,alarmManagerk;
     Calendar c;
 
     private int mYear, mMonth, mDay, mHour, mMinute;
     String title;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addiv);
+
     }
 
     public void time(View view) {
@@ -92,19 +105,28 @@ EditText txtDate=findViewById(R.id.Date);
         pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), idl, intent, 0);
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, i, pendingIntent);
+
+        Intent intentk = new Intent(this, notirec.class);
+        intentk.putExtra("remTitle",title);
+        pendingIntentk = PendingIntent.getBroadcast(this.getApplicationContext(), idl+50000, intentk, 0);
+        alarmManagerk = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManagerk.set(AlarmManager.RTC_WAKEUP, i, pendingIntentk);
+
         long dur= ((c.getTimeInMillis()-System.currentTimeMillis()))/1000;
         System.out.println(c.getTimeInMillis()+" "+System.currentTimeMillis()+" "+c.getTime());
         Toast.makeText(this, "Alarm set in " +dur  + " seconds",Toast.LENGTH_LONG).show();
-
-
         reminder iv=new reminder(mYear,mMonth,mDay,mHour,mMinute,title,idl);
-
         vi.addContact(iv);
     }
 
     public void home(View view) {
         Intent i=new Intent(this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
     }
+
+
+
+
 }
 
