@@ -18,6 +18,7 @@ public class add extends SQLiteOpenHelper {
     private static final String KEY_D = "d";
     private static final String KEY_H = "h";
     private static final String KEY_MI = "mi";
+    private static final String idl="intentid";
 
     public add(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,7 +31,7 @@ public class add extends SQLiteOpenHelper {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
                 + KEY_ID + " TEXT PRIMARY KEY," + KEY_Y + " INTEGER,"
                 + KEY_M + " INTEGER,"+ KEY_D + " INTEGER,"
-                + KEY_H + " INTEGER,"+ KEY_MI + " INTEGER"
+                + KEY_H + " INTEGER,"+ KEY_MI + " INTEGER,"+idl+" INTEGER"
                   + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
@@ -56,7 +57,7 @@ public class add extends SQLiteOpenHelper {
         values.put(KEY_D, add.gd());
         values.put(KEY_H, add.gh());
         values.put(KEY_MI, add.gmi());
-
+        values.put(idl,add.gid());
         // Contact1 Phone
 
         // Inserting Row
@@ -70,7 +71,7 @@ public class add extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-                        KEY_Y,KEY_M,KEY_D,KEY_D,KEY_H,KEY_MI }, KEY_ID + "=?",
+                        KEY_Y,KEY_M,KEY_D,KEY_D,KEY_H,KEY_MI,idl }, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -78,7 +79,7 @@ public class add extends SQLiteOpenHelper {
         reminder contact = new reminder(
         Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                 Integer.parseInt(cursor.getString(3)),Integer.parseInt(cursor.getString(4)),
-                Integer.parseInt(cursor.getString(5)),cursor.getString(0));
+                Integer.parseInt(cursor.getString(5)),cursor.getString(0),Integer.parseInt(cursor.getString(6)));
         // return contact
         return contact;
     }
@@ -98,7 +99,7 @@ public class add extends SQLiteOpenHelper {
                 reminder contact = new reminder(
                         Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)),
                         Integer.parseInt(cursor.getString(3)),Integer.parseInt(cursor.getString(4)),
-                        Integer.parseInt(cursor.getString(5)),cursor.getString(0));
+                        Integer.parseInt(cursor.getString(5)),cursor.getString(0),Integer.parseInt(cursor.getString(6)));
                 // Adding contact to list
                 contactList.add(contact);
             } while (cursor.moveToNext());
@@ -140,7 +141,6 @@ public class add extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(countQuery, null);
         int cnt=cursor.getCount();
         cursor.close();
-
 
         return cnt;
     }

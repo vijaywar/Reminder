@@ -71,4 +71,37 @@
         android:onClick="date"
         app:layout_constraintStart_toEndOf="@+id/Date"
         app:layout_constraintTop_toTopOf="@+id/Date" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#615965"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:elevation="40dp"
+
+        tools:layout_editor_absoluteX="0dp" >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="76dp"
+            app:layout_constraintStart_toStartOf="parent"
+android:onClick="home"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/actionModeSelectAllDrawable" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="172dp"
+
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add" />
+    </androidx.appcompat.widget.Toolbar>
 </androidx.constraintlayout.widget.ConstraintLayout>

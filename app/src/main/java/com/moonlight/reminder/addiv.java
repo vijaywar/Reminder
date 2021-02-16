@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -81,9 +83,28 @@ EditText txtDate=findViewById(R.id.Date);
     public void addiv(View view) {
         EditText k=findViewById(R.id.title);
         title=String.valueOf(k.getText());
-        reminder iv=new reminder(mYear,mMonth,mDay,mHour,mMinute,title);
         add vi=new add(this);
+        int idl=vi.getContactsCount()+1;
+        c.set(mYear,mMonth,mDay,mHour,mMinute);
+        long i=c.getTimeInMillis();
+
+        Intent intent = new Intent(this, AlarmManagerBroadcast.class);
+        pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), idl, intent, 0);
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, i, pendingIntent);
+        long dur= ((c.getTimeInMillis()-System.currentTimeMillis()))/1000;
+        System.out.println(c.getTimeInMillis()+" "+System.currentTimeMillis()+" "+c.getTime());
+        Toast.makeText(this, "Alarm set in " +dur  + " seconds",Toast.LENGTH_LONG).show();
+
+
+        reminder iv=new reminder(mYear,mMonth,mDay,mHour,mMinute,title,idl);
+
         vi.addContact(iv);
+    }
+
+    public void home(View view) {
+        Intent i=new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 }
 
