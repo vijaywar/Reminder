@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void add(View view) {
         Intent i=new Intent(MainActivity.this,addiv.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+       // i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(i);
         System.out.println("CLicked ao");
     }
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     public void rating(View view) {
 
         Intent raging=new Intent(this,rating.class);
+        raging.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(raging);
     }
 }
@@ -213,7 +215,7 @@ class CustomListAdapter extends BaseAdapter {
                 add kl=new add(activity);
                 kl.deleteContact(data);
                 Toast toa=new Toast(activity);
-                toa.setDuration(Toast.LENGTH_LONG);
+                toa.setDuration(Toast.LENGTH_SHORT);
                 toa.setGravity(Gravity.CENTER_VERTICAL,0,0);
 
                 View layoutt =layoutInflater.inflate(R.layout.customtoast,null);

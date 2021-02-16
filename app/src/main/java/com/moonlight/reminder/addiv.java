@@ -116,7 +116,13 @@ EditText txtDate=findViewById(R.id.Date);
         System.out.println(c.getTimeInMillis()+" "+System.currentTimeMillis()+" "+c.getTime());
         Toast.makeText(this, "Alarm set in " +dur  + " seconds",Toast.LENGTH_LONG).show();
         reminder iv=new reminder(mYear,mMonth,mDay,mHour,mMinute,title,idl);
-        vi.addContact(iv);
+        try {
+            vi.addContact(iv);
+            k.setText("");
+        }
+        catch (Exception e){
+            Toast.makeText(this,"Try different title!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void home(View view) {
@@ -125,8 +131,12 @@ EditText txtDate=findViewById(R.id.Date);
         startActivity(i);
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
+        super.onBackPressed();
+    }
 }
 

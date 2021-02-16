@@ -3,6 +3,7 @@ package com.moonlight.reminder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,12 +19,17 @@ public class rating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
         Toolbar tool=findViewById(R.id.toolbar);
-        getSupportActionBar().setTitle(null);
+
         setSupportActionBar(tool);
+        getSupportActionBar().setTitle(null);
         name=findViewById(R.id.name);
         rating=findViewById(R.id.ratingBar);
     }
-
+    public void home(View view) {
+        Intent i=new Intent(this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
+    }
     public void submit(View view) {
 
 

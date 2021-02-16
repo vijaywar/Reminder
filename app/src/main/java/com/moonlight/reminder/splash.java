@@ -50,7 +50,7 @@ public class splash extends AppCompatActivity {
                 if (i[0] >= 100) {
                     // sleeping for 1 second after operation completed
                     Intent Ma=new Intent(splash.this,MainActivity.class);
-                  
+
                     Ma.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(Ma);
