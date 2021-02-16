@@ -193,7 +193,7 @@ class CustomListAdapter extends BaseAdapter {
         reminder data=customListDataModelArrayList.get(pos);
         // viewHolder.image_view.setImageResource(customListDataModelArrayList.get(pos).getImage_id());
         viewHolder.titlea.setText(data.gt());
-        String k=String.valueOf(data.gd())+"D - -"+String.format("%02d",data.gh())+" H-"+ String.format("%02d", data.gmi())+"M";
+        String k=String.format("%02d",data.gh())+":"+String.format("%02d", data.gmi())+" -"+String.format("%02d",data.gd())+"/"+String.format("%02d",data.gm())+"/"+String.valueOf(data.gy())+"/";
         viewHolder.timea.setText(k);
         if(position%2==0)
         viewHolder.lay.setBackgroundColor(Color.parseColor("#dcaafc") );

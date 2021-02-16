@@ -98,31 +98,46 @@ EditText txtDate=findViewById(R.id.Date);
         title=String.valueOf(k.getText());
         add vi=new add(this);
         int idl=vi.getContactsCount()+1;
+     try{
         c.set(mYear,mMonth,mDay,mHour,mMinute);
-        long i=c.getTimeInMillis();
+         long i=c.getTimeInMillis();
+         long dur= ((c.getTimeInMillis()-System.currentTimeMillis()))/1000;
 
-        Intent intent = new Intent(this, AlarmManagerBroadcast.class);
-        pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), idl, intent, 0);
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, i, pendingIntent);
+         if(title!=""){
+             if(dur>0) {
+                 Intent intent = new Intent(this, AlarmManagerBroadcast.class);
+                 pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), idl, intent, 0);
+                 alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                 alarmManager.set(AlarmManager.RTC_WAKEUP, i, pendingIntent);
 
-        Intent intentk = new Intent(this, notirec.class);
-        intentk.putExtra("remTitle",title);
-        pendingIntentk = PendingIntent.getBroadcast(this.getApplicationContext(), idl+50000, intentk, 0);
-        alarmManagerk = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManagerk.set(AlarmManager.RTC_WAKEUP, i, pendingIntentk);
+                 Intent intentk = new Intent(this, notirec.class);
+                 intentk.putExtra("remTitle", title);
+                 pendingIntentk = PendingIntent.getBroadcast(this.getApplicationContext(), idl + 50000, intentk, 0);
+                 alarmManagerk = (AlarmManager) getSystemService(ALARM_SERVICE);
+                 alarmManagerk.set(AlarmManager.RTC_WAKEUP, i, pendingIntentk);
 
-        long dur= ((c.getTimeInMillis()-System.currentTimeMillis()))/1000;
-        System.out.println(c.getTimeInMillis()+" "+System.currentTimeMillis()+" "+c.getTime());
-        Toast.makeText(this, "Alarm set in " +dur  + " seconds",Toast.LENGTH_LONG).show();
-        reminder iv=new reminder(mYear,mMonth,mDay,mHour,mMinute,title,idl);
-        try {
-            vi.addContact(iv);
-            k.setText("");
-        }
-        catch (Exception e){
-            Toast.makeText(this,"Try different title!",Toast.LENGTH_SHORT).show();
-        }
+
+                 System.out.println(c.getTimeInMillis()+" "+System.currentTimeMillis()+" "+c.getTime());
+                 Toast.makeText(this, "Alarm set in " +dur  + " seconds",Toast.LENGTH_SHORT).show();
+                 reminder iv=new reminder(mYear,mMonth,mDay,mHour,mMinute,title,idl);
+                 try {
+                     vi.addContact(iv);
+                     k.setText("");
+                 }
+                 catch (Exception e){
+                     Toast.makeText(this,"Try different title!",Toast.LENGTH_SHORT).show();
+                 }}
+             else{
+                 Toast.makeText(this,"Time passed !",Toast.LENGTH_SHORT).show();
+             }}
+         else{
+             Toast.makeText(this,"Title can't be empty!",Toast.LENGTH_SHORT).show();
+         }
+     }
+     catch (Exception e){
+         Toast.makeText(this,"Set date and time Using buttons!",Toast.LENGTH_SHORT).show();
+     }
+
     }
 
     public void home(View view) {
