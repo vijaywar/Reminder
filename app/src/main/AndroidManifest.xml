@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/reminder"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/reminder"
         android:supportsRtl="true"
         android:theme="@style/Theme.Reminder">
         <activity android:name=".splash">   <intent-filter>
